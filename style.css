@@ -1,0 +1,25 @@
+.input{
+    font-size: 30px;
+    display:block;
+    width:30%;
+    margin:10px 0;
+    padding:10px;
+    border-radius:10px;
+    border: 2px solid #d33fd8;
+    transition: .3s border-color;
+    text-align: center;
+
+}
+
+.input:hover  {
+    border: 2px solid #36eee5;
+  }
+
+
+.input:focus{
+    fill:#fff;
+    filter: drop-shadow(0px 3px 8px rgba(0, 0, 0, 0.21));
+    color:#BCBCBC; 
+    outline: none;
+
+}
