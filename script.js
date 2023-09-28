@@ -17,31 +17,58 @@ inputElement.addEventListener('input', text_one_second);
 
 
 function valid() {
-    const req = new XMLHttpRequest();
-    const Token = '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';
-    req.addEventListener("load", reqListener);
-    req.open("GET", "https://api.github.com/repos/Anastasiiasyvak/sixth_assignment_js");
-    req.send();
-  }
-  
+    fetch("https://api.github.com/repos/Anastasiiasyvak/sixth_assignment_js")
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error("Error: Unable to fetch data");
+            }
+        })
+        .then(data => {
+            var resultElement = document.getElementById('res');
+            resultElement.textContent = "Valid " + JSON.stringify(data);
+        })
+        .catch(error => {
+            var resultElement = document.getElementById('res');
+            resultElement.textContent = error.message;
+        });
+}
+
 function error() {
-    const req = new XMLHttpRequest();
-    req.addEventListener("load", reqListener);
-    req.open("GET", "https://api.github.com/users/kkxnn127236"); 
-    req.send();
+    fetch("https://api.github.com/users/kkxnn127236")
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error("Error: Unable to fetch data");
+            }
+        })
+        .then(data => {
+            var resultElement = document.getElementById('res');
+            resultElement.textContent = "Valid " + JSON.stringify(data);
+        })
+        .catch(error => {
+            var resultElement = document.getElementById('res');
+            resultElement.textContent = error.message;
+        });
 }
 
 
-function reqListener() {
-    var resultElement = document.getElementById('res'); 
-    
-    if (this.status === 200) {
-        resultElement.textContent = "valid";
-    } else {
-        resultElement.textContent = "Error: Unable to fetch data";
-    }
-}
+
+
 
 document.getElementById('ValidButton').addEventListener('click', valid);
 document.getElementById('ErrorButton').addEventListener('click', error);
 
+const button_container = document.getElementById('button_container');
+
+function buttons(){
+    for (let i = 0; i <= 30; i++){
+        const button = document.createElement('button');
+        button.textContent = `${i} Septemer`;
+    }
+    button_container.appendChild(button);
+}
+
+buttons();
