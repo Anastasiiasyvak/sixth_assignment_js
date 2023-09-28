@@ -63,12 +63,12 @@ document.getElementById('ErrorButton').addEventListener('click', error);
 
 const button_container = document.getElementById('button_container');
 
-function buttons(){
-    for (let i = 0; i <= 30; i++){
-        const button = document.createElement('button');
-        button.textContent = `${i} Septemer`;
-    }
-    button_container.appendChild(button);
-}
+// function buttons(){
+//     for (let i = 0; i <= 30; i++){
+//         const button = document.createElement('button');
+//         button.textContent = `${i} Septemer`;
+//     }
+//     button_container.appendChild(button);
+// }
 
-buttons();
+// buttons();
