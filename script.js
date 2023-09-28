@@ -54,12 +54,43 @@ function error() {
         });
 }
 
-
-
-
-
 document.getElementById('ValidButton').addEventListener('click', valid);
 document.getElementById('ErrorButton').addEventListener('click', error);
 
 const button_container = document.getElementById('button_container');
+const picture = document.getElementById('picture');
+const description = document.getElementById('description');
 
+function buttons() {
+    for (let i = 1; i <= 30; i++) {
+        const button = document.createElement('button');
+        button.textContent = `${i} September`;
+        button.addEventListener('click', () => APIkey(i));
+        button_container.appendChild(button);
+    }
+}
+
+function APIkey(i) {
+    const API_key = 'k2Y8HaTXLrepYq9DTot13CvoSjPGgiFQkJKkWDL8';
+    const date = `2023-09-${i}`;
+    fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_key}&date=${date}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error');
+            }
+            return response.json();
+        })
+        .then(data => {
+            picture.src = data.url;
+            description.textContent = data.title;
+        })
+        .catch(error => {
+            picture.src = '';
+            description.textContent = `Error: ${error.message}`;
+        })
+        .finally(() => {
+            console.log('Request completed');
+        });
+}
+
+buttons();
